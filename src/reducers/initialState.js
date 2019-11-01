@@ -1,8 +1,9 @@
 export const initialState = {
     cryptoCurrencyList: [],
     cryptoCurrencyDetails: {},
-    cryptoCurrencyListLoading: false,
-    cryptoCurrencyDetailsLoading: false,
+    cryptoCurrencyListLoader: false,
+    cryptoCurrencyDetailsLoader: false,
+    currentRoute: '/',
     sortDirection: 'asc',
     sortBy: 'name',
 };

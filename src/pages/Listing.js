@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from "react-router";
 import { Table } from 'antd';
 import { fecthCryptoCurrencyList } from '../Actions/list';
+import { setNavUrl } from '../Actions/helpers';
 
-const dataMapper = (list) => {
+const dataMapper = (list = []) => {
     return list.map( cryptocurrency => ({
         key: cryptocurrency.id,
         name: cryptocurrency.name,
@@ -37,6 +39,7 @@ const Listing = () => {
         },
     ];
     const [currentPage, setCurrentPage] = useState(1);
+    const [openDetails, setOpenDetails] = useState(null);
     const dispatch = useDispatch(); 
     const tableList = useSelector( state => state.cryptoCurrencyList);
     const loadingData = useSelector( state => state.cryptoCurrencyListLoader);
@@ -45,6 +48,7 @@ const Listing = () => {
 
     useEffect(() => {
         dispatch(fecthCryptoCurrencyList(dispatch));
+        dispatch(setNavUrl(window.location.pathname));
     }, []);
 
     useEffect(() => {
@@ -53,6 +57,12 @@ const Listing = () => {
 
     return(
         <>
+        {openDetails && 
+            <Redirect push to={{
+                pathname: '/details',
+                search: `id=${openDetails}`,
+            }}/>
+        }
             <Table
                 columns={columns}
                 dataSource={dataMapper(tableList)}
@@ -65,7 +75,7 @@ const Listing = () => {
                 size="small"
                 onRow={(record, rowIndex) => {
                   return {
-                      onClick: event => console.log(record),
+                      onClick: event => setOpenDetails(record.key),
                     }
                   }
                 }

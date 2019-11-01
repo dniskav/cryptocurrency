@@ -1,8 +1,11 @@
 import { GET_CRYPTOCURRENCY_LIST, LOADING_CRYPTOCURRENCY_LIST } from "./actionTypes";
 import cryptoCurrencyList from '../api-30-p1-byname-asc';
+import { message } from 'antd';
 import axios from 'axios';
 
-const useServer = true;
+const API_KEY = process.env['REACT_APP_X-CMC_PRO_API_KEY'];
+
+const useServer = false;
 
 const fixCorsProxy = 'https://cors-anywhere.herokuapp.com/';
 
@@ -22,14 +25,19 @@ export const fecthCryptoCurrencyList = (dispatch) => {
         const state = getState();
         if(useServer) {
             const query = `${fixCorsProxy}https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&convert=USD&sort=${state.sortBy}&sort_dir=${state.sortDirection}`;
-            const cryptoCurrencyListRes = await axios(query, {
-                method: 'GET',
-                headers: {
-                        'X-CMC_PRO_API_KEY': 'dea3222b-1178-474f-81be-753b9a75f635',
+            try {
+                const cryptoCurrencyListRes = await axios(query, {
+                    method: 'GET',
+                    headers: {
+                        'X-CMC_PRO_API_KEY': API_KEY,
                     }
                 });
-            dispatch(cryptoCurrencyListLoader(false));
-            dispatch(getCryptoCurrencyList(cryptoCurrencyListRes.data.data));
+                dispatch(getCryptoCurrencyList(cryptoCurrencyListRes.data.data));
+            } catch (err) {
+                message.error(`😢 ${err}`, 5);
+            } finally {
+                dispatch(cryptoCurrencyListLoader(false));
+            }
         } else {
             setTimeout(() => {
                 dispatch(cryptoCurrencyListLoader(false));
