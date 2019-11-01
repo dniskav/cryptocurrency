@@ -2,6 +2,8 @@ import { GET_CRYPTOCURRENCY_LIST, LOADING_CRYPTOCURRENCY_LIST } from "./actionTy
 import cryptoCurrencyList from '../api-30-p1-byname-asc';
 import axios from 'axios';
 
+const API_KEY = process.env['REACT_APP_X-CMC_PRO_API_KEY'];
+
 const useServer = false;
 
 const fixCorsProxy = 'https://cors-anywhere.herokuapp.com/';
@@ -25,7 +27,7 @@ export const fecthCryptoCurrencyList = (dispatch) => {
             const cryptoCurrencyListRes = await axios(query, {
                 method: 'GET',
                 headers: {
-                        'X-CMC_PRO_API_KEY': 'dea3222b-1178-474f-81be-753b9a75f635',
+                        'X-CMC_PRO_API_KEY': API_KEY,
                     }
                 });
             dispatch(cryptoCurrencyListLoader(false));

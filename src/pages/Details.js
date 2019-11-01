@@ -68,7 +68,7 @@ const Details = () => {
     return(
         <>
             <Card >
-                <Skeleton loading={loadingData}>
+                <Skeleton loading={loadingData} active>
                     <Meta
                         title="Details of"
                         description={<DetailFormatted data={details}/>}

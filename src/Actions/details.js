@@ -2,6 +2,8 @@ import { GET_CRYPTOCURRENCY_DETAILS, LOADING_CRYPTOCURRENCY_DETAILS } from "./ac
 import cryptoCurrencyDetails from '../detail-api-2837';
 import axios from 'axios';
 
+const API_KEY = process.env['REACT_APP_X-CMC_PRO_API_KEY'];
+
 const useServer = false;
 
 const fixCorsProxy = 'https://cors-anywhere.herokuapp.com/';
@@ -25,7 +27,7 @@ export const fecthCryptoCurrencyDetails = (dispatch, id) => {
             const cryptoCurrencyDetailsRes = await axios(query, {
                 method: 'GET',
                 headers: {
-                        'X-CMC_PRO_API_KEY': 'dea3222b-1178-474f-81be-753b9a75f635',
+                        'X-CMC_PRO_API_KEY': API_KEY,
                     }
                 });
             dispatch(cryptoCurrencyDetailsLoader(false));
