@@ -57,7 +57,7 @@ const Listing = () => {
                 columns={columns}
                 dataSource={dataMapper(tableList)}
                 onChange={handleTableChange}
-                pagination={{ pageSize: 30 }}
+                pagination={{ pageSize: 30, defaultCurrent: 1 }}
                 loading={loadingData}
                 size="small"
             >

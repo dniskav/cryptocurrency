@@ -106,6 +106,5 @@ module.exports = {
         contentBase: path.resolve(__dirname, './src'),
         historyApiFallback: true,
         port: 3000,
-        open: true
     }
 };
