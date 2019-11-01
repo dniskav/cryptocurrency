@@ -58,11 +58,17 @@ const Listing = () => {
                 dataSource={dataMapper(tableList)}
                 onChange={handleTableChange}
                 pagination={{
-                  pageSize: 30,
+                  pageSize: 25,
                   current: currentPage,
                 }}
                 loading={loadingData}
                 size="small"
+                onRow={(record, rowIndex) => {
+                  return {
+                      onClick: event => console.log(record),
+                    }
+                  }
+                }
             >
             </Table>
         </>
