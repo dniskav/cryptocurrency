@@ -1,0 +1,13 @@
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    & > div {
+        display:block;
+        & > span {
+            margin-right: 5px;
+        }
+    };
+};
+
