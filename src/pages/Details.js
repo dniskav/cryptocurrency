@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Card, Skeleton, Descriptions, Badge } from 'antd';
 import { useLocation } from 'react-router-dom';
 import { fecthCryptoCurrencyDetails } from '../Actions/details';
+import { setNavUrl } from '../Actions/helpers';
 
 const DetailFormatted = ({ data = {}}) => {
     if(Object.keys(data).length === 0 ) {
@@ -63,6 +64,10 @@ const Details = () => {
     useEffect(() => {
         const id = location.search.replace('?id=', '');
         dispatch(fecthCryptoCurrencyDetails(dispatch, id));
+    }, []);
+
+    useEffect(() => {
+        dispatch(setNavUrl(window.location.pathname))
     }, []);
 
     return(

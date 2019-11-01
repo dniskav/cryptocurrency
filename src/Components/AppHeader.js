@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Select, Typography, PageHeader } from 'antd';
-import { useLocation } from 'react-router-dom';
 import { sortDirectionFetch, sortByFetch } from '../Actions/helpers';
 
 const Filters = ({ show }) => {
@@ -47,19 +46,14 @@ const Filters = ({ show }) => {
 };
 
 const AppHeader = () => {
-    let location;
-
-    useEffect(() => {
-        location = window.location;
-        console.log(location)
-    });
+    const showFilters = useSelector(state => state.currentRoute);
 
     return (
     <PageHeader
         ghost={false}
         onBack={() => window.history.back()}
         title="Cryptocurrency"
-        extra={<Filters show={true} />}
+        extra={<Filters show={showFilters === '/'} />}
     >
     </PageHeader>
 )};

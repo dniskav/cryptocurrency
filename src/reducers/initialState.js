@@ -3,6 +3,7 @@ export const initialState = {
     cryptoCurrencyDetails: {},
     cryptoCurrencyListLoader: false,
     cryptoCurrencyDetailsLoader: false,
+    currentRoute: '/',
     sortDirection: 'asc',
     sortBy: 'name',
 };

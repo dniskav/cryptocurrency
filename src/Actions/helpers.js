@@ -1,5 +1,10 @@
-import { SORT_DIRECTION, SORT_BY } from './actionTypes';
+import { SORT_DIRECTION, SORT_BY, SET_NAV_URL } from './actionTypes';
 import { fecthCryptoCurrencyList } from './list';
+
+export const setNavUrl = (currentRoute) => ({
+    type: SET_NAV_URL,
+    currentRoute,
+});
 
 export const sortDirection = (sortDirection) => ({
     type: SORT_DIRECTION,

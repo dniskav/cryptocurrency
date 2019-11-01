@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from "react-router";
 import { Table } from 'antd';
 import { fecthCryptoCurrencyList } from '../Actions/list';
+import { setNavUrl } from '../Actions/helpers';
 
 const dataMapper = (list = []) => {
     return list.map( cryptocurrency => ({
@@ -47,6 +48,7 @@ const Listing = () => {
 
     useEffect(() => {
         dispatch(fecthCryptoCurrencyList(dispatch));
+        dispatch(setNavUrl(window.location.pathname));
     }, []);
 
     useEffect(() => {
