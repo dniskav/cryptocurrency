@@ -2,7 +2,7 @@ import { GET_CRYPTOCURRENCY_LIST, LOADING_CRYPTOCURRENCY_LIST } from "./actionTy
 import cryptoCurrencyList from '../api-30-p1-byname-asc';
 import axios from 'axios';
 
-const useServer = true;
+const useServer = false;
 
 const fixCorsProxy = 'https://cors-anywhere.herokuapp.com/';
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Select, Typography, PageHeader } from 'antd';
+import { useLocation } from 'react-router-dom';
 import { sortDirectionFetch, sortByFetch } from '../Actions/helpers';
-import styled from 'styled-components';
 
-const Filters = () => {
+const Filters = ({ show }) => {
     const { Text } = Typography;
     const { Option } = Select;
     const dispatch = useDispatch();
@@ -20,6 +20,8 @@ const Filters = () => {
 
     return (
         <div className="filters">
+            {show ? 
+            <>
             <div key="direction">
                 <Text>Sort Direction</Text>
                 <Select defaultValue={direction} style={{ width: 120 }} onChange={sortDirectionChange}>
@@ -36,17 +38,28 @@ const Filters = () => {
                     <Option value="price">Price</Option>
                 </Select>
             </div>
+            </>
+            : 
+            <></>
+            }
         </div>
     )
 };
 
 const AppHeader = () => {
+    let location;
+
+    useEffect(() => {
+        location = window.location;
+        console.log(location)
+    });
+
     return (
     <PageHeader
         ghost={false}
         onBack={() => window.history.back()}
         title="Cryptocurrency"
-        extra={<Filters />}
+        extra={<Filters show={true} />}
     >
     </PageHeader>
 )};
