@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table } from 'antd';
 import { fecthCryptoCurrencyList } from '../Actions/list';
@@ -13,43 +13,43 @@ const dataMapper = (list) => {
     }));
 };
 
-const handleTableChange = (pagination, filters, sorter) => {console.log(pagination, filters, sorter)};
-
 const Listing = () => {
     const columns = [
         {
           title: 'Name',
           dataIndex: 'name',
-        //   sorter: (a, b) => a.name.localeCompare(b.name),
           key: 'name',
         },
         {
           title: 'Symbol',
           dataIndex: 'symbol',
-        //   sorter: (a, b) => a.symbol.localeCompare(b.symbol),
           key: 'symbol',
         },
         {
           title: 'Market Cap',
           dataIndex: 'market_cap',
-        //   sorter: (a, b) => a.market_cap - b.market_cap,
           key: 'market_cap',
         },
         {
           title: 'Price',
           dataIndex: 'price',
-        //   sorter: (a, b) => a.price - b.price,
           key: 'price',
         },
-      ];
-    
-    const dispatch = useDispatch();
+    ];
+    const [currentPage, setCurrentPage] = useState(1);
+    const dispatch = useDispatch(); 
     const tableList = useSelector( state => state.cryptoCurrencyList);
     const loadingData = useSelector( state => state.cryptoCurrencyListLoader);
+
+    const handleTableChange = pagination => setCurrentPage(pagination.current);
 
     useEffect(() => {
         dispatch(fecthCryptoCurrencyList(dispatch));
     }, []);
+
+    useEffect(() => {
+      setCurrentPage(1);
+    }, [tableList]);
 
     return(
         <>
@@ -57,7 +57,10 @@ const Listing = () => {
                 columns={columns}
                 dataSource={dataMapper(tableList)}
                 onChange={handleTableChange}
-                pagination={{ pageSize: 30, defaultCurrent: 1 }}
+                pagination={{
+                  pageSize: 30,
+                  current: currentPage,
+                }}
                 loading={loadingData}
                 size="small"
             >
