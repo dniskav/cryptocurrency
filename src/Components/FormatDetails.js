@@ -7,7 +7,7 @@ const FormatDetails = ({ data = {}}) => {
     } else {
         return (
             <>
-            <Descriptions title="OxBitcoin" bordered>
+            <Descriptions title={data.name} bordered>
                 <Descriptions.Item label="Name">{data.name}</Descriptions.Item>
                 <Descriptions.Item label="Symbol">{data.symbol}</Descriptions.Item>
                 <Descriptions.Item label="Slug">{data.slug}</Descriptions.Item>

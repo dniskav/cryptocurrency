@@ -1,5 +1,4 @@
 import { GET_CRYPTOCURRENCY_DETAILS, LOADING_CRYPTOCURRENCY_DETAILS } from "./actionTypes";
-import cryptoCurrencyDetails from '../detail-api-2837';
 import { message } from 'antd';
 import axios from 'axios';
 
@@ -23,26 +22,19 @@ export const fecthCryptoCurrencyDetails = (dispatch, id) => {
     return async (dispatch, getState) => {
         dispatch(cryptoCurrencyDetailsLoader(true));
         const state = getState();
-        if(useServer) {
-            const query = `${fixCorsProxy}https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`;
-            try {
-                const cryptoCurrencyDetailsRes = await axios(query, {
-                    method: 'GET',
-                    headers: {
-                            'X-CMC_PRO_API_KEY': API_KEY,
-                        }
-                    });
-                    dispatch(getCryptoCurrencyDetails(cryptoCurrencyDetailsRes.data.data[id]));
-            } catch (err) {
-                message.error(`😢 ${err}`, 5);
-            } finally {
-                dispatch(cryptoCurrencyDetailsLoader(false));
-            }
-        } else {
-            setTimeout(() => {
-                dispatch(cryptoCurrencyDetailsLoader(false));
-                dispatch(getCryptoCurrencyDetails(cryptoCurrencyDetails.data[id]));
-            }, 2000);
+        const query = `${fixCorsProxy}https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`;
+        try {
+            const cryptoCurrencyDetailsRes = await axios(query, {
+                method: 'GET',
+                headers: {
+                        'X-CMC_PRO_API_KEY': API_KEY,
+                    }
+                });
+                dispatch(getCryptoCurrencyDetails(cryptoCurrencyDetailsRes.data.data[id]));
+        } catch (err) {
+            message.error(`😢 ${err}`, 5);
+        } finally {
+            dispatch(cryptoCurrencyDetailsLoader(false));
         }
     };
 };

@@ -6,7 +6,7 @@ import {
     Link,
 } from "react-router-dom";
 import { Menu, Icon } from 'antd';
-import AppHeader from '../Components/AppHeader';
+import AppHeader from './AppHeader';
 import Listing from '../pages/Listing';
 import Details from '../pages/Details';
 
