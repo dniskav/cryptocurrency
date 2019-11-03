@@ -23,7 +23,7 @@ The main libs that app uses are:
 **CORS and other stuff** :smile:
 To avoid the horrible thing _In dev environments_ I used the [CORS anywhere](https://cors-anywhere.herokuapp.com/) to bypass it. _please guarantee this boy access to the app_ :)
 
-**test** it is not ready yet. I need config _jest_,  _jasmine_ and _babel_ to use it :(
+**test** with _jest_ and _jasmine_
 
 **Design and beauty things**
 I'm using [Ant Design](https://ant.design/) beauty, simple and clear.
