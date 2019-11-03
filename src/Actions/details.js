@@ -4,8 +4,6 @@ import axios from 'axios';
 
 const API_KEY = process.env['REACT_APP_X-CMC_PRO_API_KEY'];
 
-const useServer = false;
-
 const fixCorsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 export const getCryptoCurrencyDetails = (cryptoCurrencyDetails) => ({
@@ -21,7 +19,6 @@ export const cryptoCurrencyDetailsLoader = (cryptoCurrencyDetailsLoader) => ({
 export const fecthCryptoCurrencyDetails = (dispatch, id) => {
     return async (dispatch, getState) => {
         dispatch(cryptoCurrencyDetailsLoader(true));
-        const state = getState();
         const query = `${fixCorsProxy}https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=${id}`;
         try {
             const cryptoCurrencyDetailsRes = await axios(query, {

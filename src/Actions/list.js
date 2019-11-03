@@ -25,8 +25,7 @@ export const fecthCryptoCurrencyList = () => {
         const state = getState();
         const query = `${fixCorsProxy}https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&convert=USD&sort=${state.sortBy}&sort_dir=${state.sortDirection}`;
         try {
-            const cryptoCurrencyListRes = await axios(query, {
-                method: 'GET',
+            const cryptoCurrencyListRes = await axios.get(query, {
                 headers: {
                     'X-CMC_PRO_API_KEY': API_KEY,
                 }
