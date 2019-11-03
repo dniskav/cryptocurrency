@@ -47,7 +47,7 @@ const Listing = () => {
     const handleTableChange = pagination => setCurrentPage(pagination.current);
 
     useEffect(() => {
-        dispatch(fecthCryptoCurrencyList(dispatch));
+        dispatch(fecthCryptoCurrencyList());
         dispatch(setNavUrl(window.location.pathname));
     }, []);
 

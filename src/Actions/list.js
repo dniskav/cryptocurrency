@@ -19,7 +19,7 @@ export const cryptoCurrencyListLoader = (cryptoCurrencyListLoader) => ({
     cryptoCurrencyListLoader,
 });
 
-export const fecthCryptoCurrencyList = (dispatch) => {
+export const fecthCryptoCurrencyList = () => {
     return async (dispatch, getState) => {
         dispatch(cryptoCurrencyListLoader(true));
         const state = getState();

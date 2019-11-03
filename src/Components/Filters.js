@@ -10,11 +10,11 @@ const Filters = ({ show }) => {
     const direction = useSelector( state => state.sortDirection);
 
     const sortDirectionChange = (direction) => {
-        dispatch(sortDirectionFetch(dispatch, direction));
+        dispatch(sortDirectionFetch(direction));
     };
 
     const sortByChange = (sortBy) => {
-        dispatch(sortByFetch(dispatch, sortBy));
+        dispatch(sortByFetch(sortBy));
     };
 
     return (
@@ -23,14 +23,14 @@ const Filters = ({ show }) => {
             <>
             <div key="direction">
                 <Text>Sort Direction</Text>
-                <Select defaultValue={direction} style={{ width: 120 }} onChange={sortDirectionChange}>
+                <Select id="sortDirection" defaultValue={direction} style={{ width: 120 }} onChange={sortDirectionChange}>
                     <Option value="asc">Asc</Option>
                     <Option value="desc">Desc</Option>
                 </Select>
             </div>
             <div key="sortBy">
                 <Text>Sort By</Text>
-                <Select defaultValue="name" style={{ width: 120 }} onChange={sortByChange}>
+                <Select id="sortBy" defaultValue="name" style={{ width: 120 }} onChange={sortByChange}>
                     <Option value="name">Name</Option>
                     <Option value="symbol">Symbol</Option>
                     <Option value="market_cap">Market Cap</Option>

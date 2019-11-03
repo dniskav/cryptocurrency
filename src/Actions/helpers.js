@@ -16,15 +16,15 @@ export const sortBy = (sortBy) => ({
     sortBy,
 });
 
-export const sortDirectionFetch = (dispatch, direction) => {
-    return async () =>{
+export const sortDirectionFetch = (direction) => {
+    return async (dispatch) => {
         await dispatch(sortDirection(direction));
         dispatch(fecthCryptoCurrencyList(dispatch));
     };
 };
 
-export const sortByFetch = (dispatch, by) => {
-    return async () =>{
+export const sortByFetch = (by) => {
+    return async (dispatch) => {
         await dispatch(sortBy(by));
         dispatch(fecthCryptoCurrencyList(dispatch));
     };
