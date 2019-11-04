@@ -7,6 +7,7 @@ const FormatDetails = ({ data = {}}) => {
     } else {
         return (
             <>
+            {data &&
             <Descriptions title={data.name} bordered>
                 <Descriptions.Item label="Name">{data.name}</Descriptions.Item>
                 <Descriptions.Item label="Symbol">{data.symbol}</Descriptions.Item>
@@ -28,14 +29,18 @@ const FormatDetails = ({ data = {}}) => {
 
                 <Descriptions.Item label="Date Added">{data.date_added}</Descriptions.Item>
             </Descriptions>
+            }
 
+            {data.platform &&
             <Descriptions title="Platform" bordered>
                 <Descriptions.Item label="Name">{data.platform.name}</Descriptions.Item>
                 <Descriptions.Item label="Symbol">{data.platform.symbol}</Descriptions.Item>
                 <Descriptions.Item label="Slug">{data.platform.slug}</Descriptions.Item>
                 <Descriptions.Item label="Token Address">{data.platform.token_address}</Descriptions.Item>
             </Descriptions>
+            }
 
+            {data.quote.USD &&
             <Descriptions title="Quote USD" bordered>
                 <Descriptions.Item label="Price">{data.quote.USD.price}</Descriptions.Item>
                 <Descriptions.Item label="Volume 24 h">{data.quote.USD.volume_24h}</Descriptions.Item>
@@ -45,6 +50,7 @@ const FormatDetails = ({ data = {}}) => {
                 <Descriptions.Item label="Market Cap">{data.quote.USD.market_cap}</Descriptions.Item>
                 <Descriptions.Item label="Last Updated">{data.quote.USD.last_updated}</Descriptions.Item>
             </Descriptions>
+            }
             </>
         );
     }
