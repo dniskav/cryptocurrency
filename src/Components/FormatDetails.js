@@ -29,12 +29,14 @@ const FormatDetails = ({ data = {}}) => {
                 <Descriptions.Item label="Date Added">{data.date_added}</Descriptions.Item>
             </Descriptions>
 
+            {data.platform &&
             <Descriptions title="Platform" bordered>
                 <Descriptions.Item label="Name">{data.platform.name}</Descriptions.Item>
                 <Descriptions.Item label="Symbol">{data.platform.symbol}</Descriptions.Item>
                 <Descriptions.Item label="Slug">{data.platform.slug}</Descriptions.Item>
                 <Descriptions.Item label="Token Address">{data.platform.token_address}</Descriptions.Item>
             </Descriptions>
+            }
 
             <Descriptions title="Quote USD" bordered>
                 <Descriptions.Item label="Price">{data.quote.USD.price}</Descriptions.Item>
